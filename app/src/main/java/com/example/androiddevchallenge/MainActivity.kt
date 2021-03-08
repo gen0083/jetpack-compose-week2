@@ -25,6 +25,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 import com.example.androiddevchallenge.ui.theme.MyTheme
+import com.example.androiddevchallenge.ui.timer.TimerScreen
 
 class MainActivity : AppCompatActivity() {
     val viewModel by viewModels<MainViewModel>()
@@ -33,7 +34,7 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             MyTheme {
-                MyApp()
+                TimerScreen(vm = viewModel)
             }
         }
     }
