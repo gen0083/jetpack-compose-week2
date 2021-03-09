@@ -45,7 +45,7 @@ class MainViewModel : ViewModel() {
     }
 
     companion object {
-        const val DEFAULT_TIME = 180L
+        const val DEFAULT_TIME = 60L
     }
 }
 
