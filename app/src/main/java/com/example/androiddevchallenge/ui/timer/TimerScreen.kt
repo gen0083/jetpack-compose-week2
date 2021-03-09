@@ -1,6 +1,9 @@
 package com.example.androiddevchallenge.ui.timer
 
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.LinearEasing
 import androidx.compose.animation.core.animateFloatAsState
+import androidx.compose.animation.core.tween
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
@@ -46,7 +49,13 @@ fun Timer(
         displayText: String,
         remainRatio: Float = 1f,
 ) {
-    val ratio: Float by animateFloatAsState(targetValue = remainRatio)
+    val ratio: Float by animateFloatAsState(
+            targetValue = remainRatio,
+            animationSpec = tween(
+                    durationMillis = if (remainRatio == 1f) 500 else 1000,
+                    easing = if (remainRatio == 1f) FastOutSlowInEasing else LinearEasing
+            )
+    )
     Column(
             modifier = modifier
                     .fillMaxWidth()
@@ -56,7 +65,14 @@ fun Timer(
     ) {
         Text(text = displayText)
         Text(text = "remain ratio = $remainRatio")
-        CircularProgressIndicator(progress = ratio)
+        CircularProgressIndicator(
+                progress = ratio,
+                modifier = Modifier
+                        .width(200.dp)
+                        .height(200.dp)
+                        .padding(16.dp),
+                strokeWidth = 20.dp
+        )
     }
 }
 
