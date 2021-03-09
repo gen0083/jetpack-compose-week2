@@ -1,5 +1,6 @@
 package com.example.androiddevchallenge.ui.timer
 
+import androidx.compose.animation.core.animateFloatAsState
 import androidx.compose.foundation.layout.*
 import androidx.compose.material.Button
 import androidx.compose.material.CircularProgressIndicator
@@ -45,6 +46,7 @@ fun Timer(
         displayText: String,
         remainRatio: Float = 1f,
 ) {
+    val ratio: Float by animateFloatAsState(targetValue = remainRatio)
     Column(
             modifier = modifier
                     .fillMaxWidth()
@@ -54,7 +56,7 @@ fun Timer(
     ) {
         Text(text = displayText)
         Text(text = "remain ratio = $remainRatio")
-        CircularProgressIndicator(progress = remainRatio)
+        CircularProgressIndicator(progress = ratio)
     }
 }
 
